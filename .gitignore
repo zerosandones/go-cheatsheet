@@ -1,0 +1,11 @@
+# Ignore all files by default
+*
+# Do not ignore directories
+!*/
+
+# Exclude your source and documentation files from being ignored
+!*.go
+!*.mod
+!*.sum
+!*.md
+!.gitignore
