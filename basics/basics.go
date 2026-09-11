@@ -7,10 +7,16 @@ package main
  */
 import (
 	"fmt"
+	"math"
 
 	"rsc.io/quote"
 )
 
 func main() {
 	fmt.Println(quote.Opt())
+
+	var a any
+	a = 5.4
+	r := a.(float64)
+	fmt.Println("the circles area is ", math.Pi*r*r)
 }

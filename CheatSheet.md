@@ -12,10 +12,20 @@ go run <module-name>/<file-name>
 
 ### Build
 
-The _build_ command will compile the program but not run it. this will generate an executable file.
+The _build_ command will compile the program but not run it. This will generate an executable file.
 
 ```bash
 go build <module-name>/<file-name>
+```
+
+This will create a file named _<file-name>_ in the current directory that can be run using _./<file-name>_. You must be in the same folder as the file to run it.
+
+### Install
+
+The _install_ command will compile and install the program. This will generate an executable file in the _$GOPATH/bin_ directory.
+
+```bash
+go install <module-name>/<file-name>
 ```
 
 ### Get
@@ -56,21 +66,33 @@ If you are wanting to use a module that has not yet been published to a remote r
 replace <import-path> => <local-path>
 ```
 
-## Operators
+## Types
 
-### :=
+### Any
 
-The _:=_ operator is used to declare and initialize a variable. the type of the value assigned to the string tells the compiler what type the variable should be.
+The any type describes any Go type. _any_ is defined as interface{} (empty interface), which describes an interface with zero methods. Every Go type implements at least zero methods and therefore satisfies the empty interface.
 
-```go
-var <variable-name> = <value>
-```
-
-Can be used instead of
+To cast an _any_ value to a specific type, use the following syntax:
 
 ```go
-var <variable-name> <type> = <value>
+value := anyValue.(<type>)
 ```
+
+### Basic Types
+
+- `int`, `float64`, `string`, `bool`, `byte`, `rune`
+- `int8`, `int16`, `int32`, `int64`
+- `uint`, `uint8`, `uint16`, `uint32`, `uint64`
+- `float32`
+- `complex64`, `complex128`
+- `byte`, `rune`
+- `struct`, `interface`
+- `array`, `slice`
+- `map`
+- `chan`
+- `func`
+- `error`
+- `nil`
 
 ## Functions
 
@@ -98,4 +120,31 @@ To call and store the returned values from a function, use the following syntax:
 
 ```go
 result, err := <function-name>(<parameters>)
+```
+## Operators
+
+### :=
+
+The _:=_ operator is used to declare and initialize a variable. the type of the value assigned to the string tells the compiler what type the variable should be.
+
+```go
+var <variable-name> = <value>
+```
+
+Can be used instead of
+
+```go
+var <variable-name> <type> = <value>
+```
+
+## Testing
+
+Tests are created in files that end with _test.go_.
+
+Test functions have the paramater _t *testing.T_ which is used to report test failures and log messages. **Test failure** can be reported by using the _t.Error_ or _t.Fatal_ methods, if you want to display a message you can use _t.Errorf_ or _t.Fatalf_ methods.
+
+To test your code, use the _go test_ command.
+
+```go
+go test
 ```

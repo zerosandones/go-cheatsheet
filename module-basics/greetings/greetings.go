@@ -10,6 +10,7 @@ import (
 func Hello(name string) (string, error) {
 	// Return a greeting that embeds the name in a message.
 	message := fmt.Sprintf(randomFormat(), name)
+	//message := fmt.Sprint(randomFormat()) //code that will make the test fail
 	if name == "" {
 		return "", errors.New("name is empty")
 	}
